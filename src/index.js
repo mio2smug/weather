@@ -1,12 +1,20 @@
+import { min } from 'lodash';
 import getUserLocation from './getUserLocation'
 
 
-//api template `https://api.weatherapi.com/v1/current.json?key=42e9caab8bdd43ab819201719232403&q=39.1,-76.94`
-//api template works without having to round lat and long to 10^-2
+    //html constants
+    const todaysWeather = document.querySelector('#todays--weather')
+    const forecastWrapper = document.querySelector('#forecast--wrapper')
 
-// let myKey =  "42e9caab8bdd43ab819201719232403";
 
-// let userLocationLat, userLocationLong;
+    class myObject{
+        constructor(a,b,c,d){
+            this.day = a;
+            this.overcast = b;
+            this.max = c;
+            this.min = d;
+        }
+    }
 
     if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -15,7 +23,6 @@ import getUserLocation from './getUserLocation'
     }
 
     function showPosition(position){
-        //initiate as local variables
 
         const myKey =  "42e9caab8bdd43ab819201719232403";
         let userLocationLat, userLocationLong;
@@ -24,30 +31,50 @@ import getUserLocation from './getUserLocation'
         userLocationLat = position.coords.latitude
         userLocationLong = position.coords.longitude
         getWeather(myKey, userLocationLat, userLocationLong)
-        // console.log("latitude: " + userLocationLat + " longitude: " + userLocationLong)  //working
     }
 
 
     function getWeather(a,b,c){
-        fetch(`https://api.weatherapi.com/v1/current.json?key=${a}&q=${b},${c}`, {mode: 'cors'})
+        fetch(`https://api.weatherapi.com/v1/forecast.json?key=${a}&q=${b},${c}&days=7`, {mode: 'cors'})
         .then(function(response){
             return response.json();
         })
         .then(function(response){
-            console.log(response);
+            myData(response);
+        }).catch(function(error){
+            console.log("could not be resolved :(")
         });
     }
 
+    function myData(response){
+        let myArray = [];
+       for(let i= 0; i<7; i++){
+                let datetest = response.forecast.forecastday[i].date
+                let conditiontest = response.forecast.forecastday[i].day.condition.text
+                let maxtest = response.forecast.forecastday[i].day.maxtemp_f
+                let mintest = response.forecast.forecastday[i].day.mintemp_f
+                const date = new myObject(datetest, conditiontest, maxtest,mintest); 
+                myArray.push(date)
+       }
+       display(myArray);
+    }
 
+    function display(myArray){
+        console.log(myArray)
+        // for (let i = 0; i<myArray.length;i++){
+            // if (i=0){
+                const myDivOuter = document.createElement('div')
+                myDivOuter.classList.add('icon--div')
 
+                const myDivInner = document.createElement('div')
+                myDivInner.classList.add('icon--div--wrapper')
 
-// fetch(`https://api.weatherapi.com/v1/current.json?key=${a}q=${b},${c}`, {mode: 'cors'})
-//         .then(function(response){
-//             return response.json();
-//         })
-//         .then(function(response){
-//             console.log(response);
-//         });
+                const myIcon = document.createElement('img')
+                myIcon.src.add('sunny.svg')
 
-
-        
+                myDivInner.appendChild(myIcon)
+                myDivOuter.appendChild(myDivInner)
+                todaysWeather.appendChild(myDivOuter)
+            // }
+        // }
+    }
