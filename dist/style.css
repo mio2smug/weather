@@ -47,7 +47,7 @@
 }
 
 .today--wrapper > div{
-    border: var(--test);
+    /* border: var(--test); */
     height: 33%;
     display: flex;
 }
@@ -61,7 +61,7 @@
 .icon--div--wrapper{
     display: flex;
     justify-content: center;
-    border: var(--test);
+    /* border: var(--test); */
     height: 66%;
     width: 33%;
 }
@@ -73,7 +73,7 @@
     align-items: center;
     padding-left: 33%;
     font-size: x-large;
-}
+}   
 
 .temp--low--wrapper{
     display: flex;
@@ -88,8 +88,43 @@
     width: 10%;
 }
 
+.forecast > div{
+    /* border: var(--test); */
+    height: 25% ;
+}
+
+.day--value--wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon--div--wrapper--forecast{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast--icons{
+    height: 35%;
+    width: 2em;
+}
+
 .weather--wrapper > div{
-    border: var(--test);
+    /* border: var(--test); */
     /* width: 10% */
 }
 
+.forecast--weather--high{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast--weather--low{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
