@@ -1,1 +1,1 @@
-alert("hello?"),console.log("Death grips is online");
+console.log("Death grips is online"),prompt("is this working?");
