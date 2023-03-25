@@ -1,1 +1,1 @@
-console.log("Death grips is online");
+(()=>{"use strict";navigator.geolocation?navigator.geolocation.getCurrentPosition((function(o){let t,e;t=o.coords.latitude,e=o.coords.longitude,fetch(`https://api.weatherapi.com/v1/current.json?key=42e9caab8bdd43ab819201719232403&q=${t},${e}`,{mode:"cors"}).then((function(o){return o.json()})).then((function(o){console.log(o)}))})):console.log("error")})();
