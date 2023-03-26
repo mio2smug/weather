@@ -61,20 +61,97 @@ import getUserLocation from './getUserLocation'
 
     function display(myArray){
         console.log(myArray)
-        // for (let i = 0; i<myArray.length;i++){
-            // if (i=0){
+        // const myTextValue = document.createElement('p') // Works?
+        // myTextValue.textContent = "WIndow?"
+        // todaysWeather.appendChild(myTextValue)
+
+
+        //works
+
+
+        for (let i= 0; i< myArray.length;i++){
+            if(i === 1){
+
+                //Display icon
                 const myDivOuter = document.createElement('div')
                 myDivOuter.classList.add('icon--div')
-
+                
                 const myDivInner = document.createElement('div')
                 myDivInner.classList.add('icon--div--wrapper')
 
-                const myIcon = document.createElement('img')
-                myIcon.src.add('sunny.svg')
+                const myTodayIcon = document.createElement('img')
+                myTodayIcon.src = "sunny.svg"
 
-                myDivInner.appendChild(myIcon)
+                myDivInner.appendChild(myTodayIcon)
                 myDivOuter.appendChild(myDivInner)
+                // todaysWeather.appendChild(myDivOuter) 
+
+                //End icon construction
+
+                //start high temp construction
+                const myTempHighDiv = document.createElement('div')
+                myTempHighDiv.classList.add('temp-high');
+
+                const myTempHighDivWrapper = document.createElement('div')
+                myTempHighDivWrapper.classList.add('temp--high--wrapper');
+
+                const myTodaysDate = document.createElement('h1')
+                myTodaysDate.textContent =  "Today's High: ";
+
+                const myTodaysHighTemp = document.createElement('h5')
+                myTodaysHighTemp.textContent =  myArray[i].max + " °F";
+
+                 myTempHighDivWrapper.appendChild(myTodaysDate)
+                 myTempHighDivWrapper.appendChild(myTodaysHighTemp)
+                 myTempHighDiv.appendChild(myTempHighDivWrapper);
+                //end high temp construction
+
+                //start low  temp construction
+                const myTempLowDiv = document.createElement('div')
+                myTempLowDiv.classList.add('temp-low')
+
+                const myTempLowDivWrapper = document.createElement('div')
+                myTempLowDivWrapper.classList.add('temp--low--wrapper')
+
+                const myTodaysDate2 = document.createElement('h1')
+                myTodaysDate2.textContent = "Today's low: "
+
+                const myTodaysLowTemp = document.createElement('h5')
+                myTodaysLowTemp.textContent = myArray[i].min + " °F"
+
+                myTempLowDivWrapper.appendChild(myTodaysDate2)
+                myTempLowDivWrapper.appendChild(myTodaysLowTemp)
+                myTempLowDiv.appendChild(myTempLowDivWrapper)
+                //end low temp construction
+
                 todaysWeather.appendChild(myDivOuter)
+                todaysWeather.appendChild(myTempHighDiv)
+                todaysWeather.appendChild(myTempLowDiv)
+
+
+
+
+            }  else{
+                console.log(i)
+            }
+
+        }
+
+
+        // for (let i = 0; i<myArray.length;i++){
+            // if (i=0){
+                // const myDivOuter = document.createElement('div')
+                // myDivOuter.classList.add('icon--div')
+
+                // const myDivInner = document.createElement('div')
+                // myDivInner.classList.add('icon--div--wrapper')
+
+                // const myIcon = document.createElement('img')
+                // myIcon.src.add('sunny.svg')
+
+                // myDivInner.appendChild(myIcon)
+                // myDivOuter.appendChild(myDivInner)
+                // todaysWeather.appendChild(myDivOuter)
             // }
         // }
     }
