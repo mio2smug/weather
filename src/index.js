@@ -208,7 +208,7 @@ import getUserLocation from './getUserLocation'
                 nthDayTempLow.classList.add("forecast--weather--low")
 
                 const nthDayTempLowLabel = document.createElement('h1')
-                nthDayTempLowLabel.textContent = myArray[i].day + ' High: '
+                nthDayTempLowLabel.textContent = myArray[i].day + ' Low: '
                 const nthDayTempLowValue = document.createElement('h1')
                 nthDayTempLowValue.textContent = myArray[i].min + ' *F'
 
