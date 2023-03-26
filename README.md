@@ -10,3 +10,5 @@ For the moment the icon that shows up for whatever nth day is just whatever svg 
 A button that will allow the user to switch from FAhrenheit to celsius
 
 IF user rejects geolocation, then allow them to input a zipcode
+
+My original idea had the background image of the website reflect to whatever the current weather the user is experiencing is but I couldn't find the gifs and videos that fit nicely with the dimensions of the webpage so I'll have to edit those myself at a future date
