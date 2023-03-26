@@ -4,7 +4,9 @@ import getUserLocation from './getUserLocation'
 
     //html constants
     const todaysWeather = document.querySelector('#todays--weather')
+    todaysWeather.classList.add("today--wrapper")
     const forecastWrapper = document.querySelector('#forecast--wrapper')
+    forecastWrapper.classList.add("forecast")
 
 
     class myObject{
@@ -60,17 +62,8 @@ import getUserLocation from './getUserLocation'
     }
 
     function display(myArray){
-        console.log(myArray)
-        // const myTextValue = document.createElement('p') // Works?
-        // myTextValue.textContent = "WIndow?"
-        // todaysWeather.appendChild(myTextValue)
-
-
-        //works
-
-
         for (let i= 0; i< myArray.length;i++){
-            if(i === 1){
+            if(i === 0){
 
                 //Display icon
                 const myDivOuter = document.createElement('div')
@@ -80,7 +73,7 @@ import getUserLocation from './getUserLocation'
                 myDivInner.classList.add('icon--div--wrapper')
 
                 const myTodayIcon = document.createElement('img')
-                myTodayIcon.src = "sunny.svg"
+                myTodayIcon.src = "rain.svg"
 
                 myDivInner.appendChild(myTodayIcon)
                 myDivOuter.appendChild(myDivInner)
@@ -128,30 +121,108 @@ import getUserLocation from './getUserLocation'
                 todaysWeather.appendChild(myTempHighDiv)
                 todaysWeather.appendChild(myTempLowDiv)
 
+            } 
+            if (i===1){
 
+                const myTomorrowReal = document.createElement('div')
+                myTomorrowReal.classList.add('forecast--item--wrapper')
 
+                const myTomorrow = document.createElement('div')
+                myTomorrow.classList.add('day--value--wrapper')
 
-            }  else{
-                console.log(i)
+                const myTomorrowHeading = document.createElement('h1')
+                myTomorrowHeading.textContent = myArray[i].day
+                myTomorrow.appendChild(myTomorrowHeading); //end
+
+                const myTomorrowIconWrapper = document.createElement('div')
+                myTomorrowIconWrapper.classList.add('icon--div--wrapper--forecast')
+
+                const myTomorrowIcon = document.createElement('img')
+                myTomorrowIcon.classList.add('forecast--icons')
+                myTomorrowIcon.src = "sunny.svg"
+
+                myTomorrowIconWrapper.appendChild(myTomorrowIcon); //end
+
+                const myTomorrowForecastDivHigh = document.createElement('div')
+                myTomorrowForecastDivHigh.classList.add('forecast--weather--high')
+                const myTomorrowForecastDivHighLabel = document.createElement('h1')
+                myTomorrowForecastDivHighLabel.textContent = "Tomorrow's High:"
+                const myTomorrowForecastDivHighValue = document.createElement('h1')
+                myTomorrowForecastDivHighValue.textContent = myArray[i].max + " °F"
+
+                myTomorrowForecastDivHigh.appendChild(myTomorrowForecastDivHighLabel)
+                myTomorrowForecastDivHigh.appendChild(myTomorrowForecastDivHighValue); //End
+
+                const myTomorrowForecastDivLow = document.createElement('div')
+                myTomorrowForecastDivLow.classList.add('forecast--weather--low')
+                const myTomorrowForecastDivLowLabel = document.createElement('h1')
+                myTomorrowForecastDivLowLabel.textContent = "Tomorrow's low"
+                const myTomorrowForecastDivLowValue = document.createElement('h1')
+                myTomorrowForecastDivLowValue.textContent = myArray[i].min + " °F"
+
+                myTomorrowForecastDivLow.appendChild(myTomorrowForecastDivLowLabel)
+                myTomorrowForecastDivLow.appendChild(myTomorrowForecastDivLowValue); //end
+
+                myTomorrowReal.appendChild(myTomorrow)
+                myTomorrowReal.appendChild(myTomorrowIconWrapper)
+                myTomorrowReal.appendChild(myTomorrowForecastDivHigh)
+                myTomorrowReal.appendChild(myTomorrowForecastDivLow)
+
+                forecastWrapper.appendChild(myTomorrowReal)
+            }
+            if (i > 1){
+
+                const myNthDayReal = document.createElement('div')
+                myNthDayReal.classList.add('forecast--item--wrapper')
+
+                const nthDay = document.createElement('div')
+                nthDay.classList.add("day--value--wrapper")
+                nthDay.classList.add('forecast')
+
+                const nthDayDate=document.createElement('h1')
+                nthDayDate.textContent = myArray[i].day
+
+                nthDay.appendChild(nthDayDate) //end nday 1
+
+                const nthDayIconWrapper = document.createElement('div')
+                nthDayIconWrapper.classList.add("icon--div--wrapper--forecast")
+
+                const nthDayImg = document.createElement('img')
+                nthDayImg.classList.add('forecast--icons')
+                nthDayImg.src = 'rain.svg'
+
+                nthDayIconWrapper.appendChild(nthDayImg) //end nday 2
+
+                const nthDayTempHigh = document.createElement('div')
+                nthDayTempHigh.classList.add("forecast--weather--high")
+
+                const nthDayTempHighLabel = document.createElement('h1')
+                nthDayTempHighLabel.textContent = myArray[i].day + ' High: '
+                const nthDayTempHighVal = document.createElement('h1')
+                nthDayTempHighVal.textContent = myArray[i].max + ' *F'
+
+                nthDayTempHigh.appendChild(nthDayTempHighLabel)
+                nthDayTempHigh.appendChild(nthDayTempHighVal) // end nday 3
+
+                const nthDayTempLow = document.createElement('div')
+                nthDayTempLow.classList.add("forecast--weather--low")
+
+                const nthDayTempLowLabel = document.createElement('h1')
+                nthDayTempLowLabel.textContent = myArray[i].day + ' High: '
+                const nthDayTempLowValue = document.createElement('h1')
+                nthDayTempLowValue.textContent = myArray[i].min + ' *F'
+
+                nthDayTempLow.appendChild(nthDayTempLowLabel)
+                nthDayTempLow.appendChild(nthDayTempLowValue) //end nday 4
+
+                myNthDayReal.appendChild(nthDay)
+                myNthDayReal.appendChild(nthDayIconWrapper)
+                myNthDayReal.appendChild(nthDayTempHigh)
+                myNthDayReal.appendChild(nthDayTempLow)
+
+                forecastWrapper.appendChild(myNthDayReal)
+
             }
 
         }
-
-
-        // for (let i = 0; i<myArray.length;i++){
-            // if (i=0){
-                // const myDivOuter = document.createElement('div')
-                // myDivOuter.classList.add('icon--div')
-
-                // const myDivInner = document.createElement('div')
-                // myDivInner.classList.add('icon--div--wrapper')
-
-                // const myIcon = document.createElement('img')
-                // myIcon.src.add('sunny.svg')
-
-                // myDivInner.appendChild(myIcon)
-                // myDivOuter.appendChild(myDivInner)
-                // todaysWeather.appendChild(myDivOuter)
-            // }
-        // }
     }
